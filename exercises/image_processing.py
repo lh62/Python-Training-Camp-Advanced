@@ -17,7 +17,7 @@ def image_processing_pipeline(image_path):
         image_path: 图像文件的路径 (字符串).
     返回:
         edges: Canny 边缘检测的结果 (NumPy 数组, 灰度图像).
-               如果读取图像失败, 返回 None.
+            如果读取图像失败, 返回 None.
     """
     # 请在此处编写代码
     # 提示：
@@ -27,4 +27,13 @@ def image_processing_pipeline(image_path):
     # 4. 使用 cv2.GaussianBlur() 进行高斯滤波。
     # 5. 使用 cv2.Canny() 进行边缘检测。
     # 6. 使用 try...except 包裹代码以处理可能的异常。
-    pass 
+    try:
+        img = cv2.imread(image_path)
+        if img is None:
+            return None
+        imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        imgBlur = cv2.GaussianBlur(imgGray, (5, 5), 0)
+        edges = cv2.Canny(imgBlur, 100, 200)
+        return edges
+    except:
+        return None
