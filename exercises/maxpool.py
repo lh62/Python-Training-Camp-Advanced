@@ -41,4 +41,4 @@ def maxpool(x, kernel_size, stride):
             w_start = j * stride
             window = x[h_start:h_start+kernel_size, w_start:w_start+kernel_size]
             out[i, j] = np.max(window)
-    return out
+    return out 
